@@ -148,14 +148,145 @@ mvn -Dtest=OwnerServiceTest test -Dspring.profiles.active=h2
 # Caso 4 - Pruebas unitarias para visitas (VisitServiceTest)
 
 ## Descripción del Caso 4 realizado por Sheila Diaz
+### Rama: `feature/sheila-caso4`
 
-(Pendiente de completar)
+Se implementaron las pruebas unitarias correspondientes a la entidad `Visit` dentro de la clase `VisitServiceTest`.
+
+Para ello, se desarrollaron las siguientes clases:
+
+- Visit
+- VisitRepository
+- VisitService
+- VisitServiceImpl
+- VisitNotFoundException
+
+Posteriormente, se implementaron pruebas unitarias para validar las operaciones CRUD:
+
+- Creación de visitas.
+- Actualización de visitas.
+- Búsqueda por ID.
+- Búsqueda por petId.
+- Eliminación de visitas.
+
+Finalmente, se ejecutaron correctamente las pruebas utilizando Maven y la base de datos H2, obteniendo BUILD SUCCESS con 5/5 tests pasando.
+
+---
+
+## Pasos realizados por Sheila Diaz
+
+### 1. Clonar el repositorio colaborativo
+```bash
+git clone https://github.com/naomisanchez-coder/laboratorio11-petclinic-test.git
+```
+
+### 2. Entrar a la carpeta del proyecto
+```bash
+cd laboratorio11-petclinic-test
+```
+
+### 3. Ver las ramas disponibles
+```bash
+git branch
+```
+
+### 4. Crear y cambiar a la rama del caso 4
+```bash
+git checkout -b feature/sheila-caso4
+```
+
+### 5. Verificar que estamos en la rama correcta
+```bash
+git branch
+```
+
+### 6. Ver la estructura del proyecto
+```bash
+dir src\main\java\com\tecsup\petclinic
+dir src\main\java\com\tecsup\petclinic\entities
+dir src\main\java\com\tecsup\petclinic\exceptions
+dir src\main\java\com\tecsup\petclinic\services
+dir src\main\java\com\tecsup\petclinic\repositories
+```
+
+### 7. Crear los archivos de producción (sin BOM para evitar error \ufeff)
+```powershell
+[System.IO.File]::WriteAllText("$PWD\src\main\java\com\tecsup\petclinic\entities\Visit.java", ...)
+[System.IO.File]::WriteAllText("$PWD\src\main\java\com\tecsup\petclinic\exceptions\VisitNotFoundException.java", ...)
+[System.IO.File]::WriteAllText("$PWD\src\main\java\com\tecsup\petclinic\repositories\VisitRepository.java", ...)
+[System.IO.File]::WriteAllText("$PWD\src\main\java\com\tecsup\petclinic\services\VisitService.java", ...)
+[System.IO.File]::WriteAllText("$PWD\src\main\java\com\tecsup\petclinic\services\VisitServiceImpl.java", ...)
+```
+
+### 8. Crear el archivo de pruebas
+```powershell
+[System.IO.File]::WriteAllText("$PWD\src\test\java\com\tecsup\petclinic\services\VisitServiceTest.java", ...)
+```
+
+### 9. Ejecutar todas las pruebas
+```powershell
+mvn test "-Dspring.profiles.active=h2"
+```
+
+### 10. Resultado obtenido
+Tests run: 30, Failures: 0, Errors: 0, Skipped: 0
+BUILD SUCCESS
+### 11. Ejecutar solo VisitServiceTest
+```powershell
+mvn -Dtest=VisitServiceTest test "-Dspring.profiles.active=h2"
+```
+
+### 12. Ver archivos modificados
+```bash
+git status
+```
+
+### 13. Agregar todos los archivos
+```bash
+git add .
+```
+
+### 14. Hacer el commit
+```bash
+git commit -m "feat: caso 4 - pruebas unitarias VisitServiceTest - Sheila Diaz"
+```
+
+### 15. Subir la rama a GitHub
+```bash
+git push https://SHEILA-DIAZ:ghp_TOKEN@github.com/naomisanchez-coder/laboratorio11-petclinic-test.git feature/sheila-caso4
+```
+
+### 16. Crear Pull Request en GitHub
+- URL: https://github.com/naomisanchez-coder/laboratorio11-petclinic-test/pull/1
+- Título: `feat: caso 4 - pruebas unitarias VisitServiceTest - Sheila Diaz`
+- Rama origen: `feature/sheila-caso4`
+- Rama destino: `main`
+- Estado: ✅ Ready to merge - 6 archivos - No conflicts
+
+---
+
+## Pruebas implementadas en VisitServiceTest
+
+| Test | Descripción | Resultado |
+|---|---|---|
+| `testCreateVisit` | Crea una visita y verifica que se guarda correctamente | ✅ PASS |
+| `testFindVisitById` | Busca una visita por ID | ✅ PASS |
+| `testUpdateVisit` | Actualiza la descripción de una visita | ✅ PASS |
+| `testDeleteVisit` | Elimina una visita y verifica que no existe | ✅ PASS |
+| `testFindVisitsByPetId` | Busca visitas por ID de mascota | ✅ PASS |
 
 ---
 
 ## Comandos para ejecutar el Caso 4
 
-(Pendiente de completar)
+### Ejecutar todas las pruebas
+```powershell
+mvn test "-Dspring.profiles.active=h2"
+```
+
+### Ejecutar únicamente VisitServiceTest
+```powershell
+mvn -Dtest=VisitServiceTest test "-Dspring.profiles.active=h2"
+```
 
 ---
 
@@ -167,14 +298,14 @@ Inicialmente fue necesario eliminar el historial Git del repositorio original pa
 
 También se presentaron inconvenientes al editar commits mediante VIM desde la terminal de MacOS. Este problema fue solucionado aprendiendo el uso básico del editor para guardar y cerrar correctamente los commits.
 
+Adicionalmente, al crear los archivos Java desde PowerShell con `Set-Content`, se generó un error de compilación por el carácter `\ufeff` (BOM). Este problema fue solucionado usando `[System.IO.File]::WriteAllText` que guarda los archivos sin BOM.
+
 Finalmente, se verificó la correcta ejecución de todas las pruebas unitarias utilizando Maven y el perfil H2, obteniendo resultados satisfactorios con BUILD SUCCESS.
 
 ---
 
 # Repositorio GitHub
 
-Agregar aquí la URL final del repositorio colaborativo:
-
 ```text
-https://github.com/USUARIO/laboratorio11-petclinic-test
+https://github.com/naomisanchez-coder/laboratorio11-petclinic-test
 ```
