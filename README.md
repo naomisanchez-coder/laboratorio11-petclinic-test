@@ -148,7 +148,7 @@ mvn -Dtest=OwnerServiceTest test -Dspring.profiles.active=h2
 # Caso 4 - Pruebas unitarias para visitas (VisitServiceTest)
 
 ## Descripción del Caso 4 realizado por Sheila Diaz
-### Rama: `feature/sheila-caso4`
+### Rama: [`feature/sheila-caso4`](https://github.com/naomisanchez-coder/laboratorio11-petclinic-test/tree/feature/sheila-caso4)
 
 Se implementaron las pruebas unitarias correspondientes a la entidad `Visit` dentro de la clase `VisitServiceTest`.
 
