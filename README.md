@@ -1,7 +1,180 @@
-# Spring Boot : Application PetClinic
+# LABORATORIO 11 - PRUEBAS UNITARIAS PETCLINIC
 
-## Features  
+## Descripción del laboratorio
 
-### 1.  Unit Test  --> Tag v1.0.0
+El presente laboratorio tiene como objetivo implementar pruebas unitarias dentro del proyecto `petclinic_test` utilizando Spring Boot, JUnit y Maven. Cada integrante del equipo desarrolló pruebas unitarias para distintas entidades del sistema aplicando operaciones CRUD (Create, Read, Update y Delete).
 
+Además, se trabajó colaborativamente mediante Git y GitHub, utilizando ramas y commits para el control de versiones del proyecto.
+
+---
+
+# Integrantes del equipo
+
+| Integrante | Responsabilidad |
+|------------|----------------|
+| Naomi Sanchez | Encargada de desarrollar el Caso 1 y Caso 2 |
+| Angie Portocarrero | Encargada de desarrollar el Caso 3 |
+| Sheila Diaz | Encargada de desarrollar el Caso 4 |
+
+---
+
+# Configuración inicial del proyecto
+
+## Pasos realizados
+
+1. Clonación del repositorio original:
+```bash
+git clone https://github.com/jgomezz/petclinic_test.git
+```
+
+2. Eliminación del historial Git original:
+```bash
+rm -rf .git
+```
+
+3. Inicialización del nuevo repositorio:
+```bash
+git init
+```
+
+4. Configuración y limpieza de credenciales del proyecto.
+
+5. Creación del nuevo repositorio colaborativo en GitHub.
+
+6. Invitación de colaboradoras al repositorio.
+
+7. Ejecución del proyecto usando Maven y base de datos H2.
+
+---
+
+# Caso 1 - Pruebas unitarias para veterinarios (VetServiceTest)
+
+## Descripción
+
+En este caso se implementaron las pruebas unitarias correspondientes a la entidad `Vet` dentro de la clase `VetServiceTest`.
+
+Para ello, se desarrollaron las siguientes clases:
+
+- Vet
+- VetRepository
+- VetService
+- VetServiceImpl
+- VetNotFoundException
+
+Posteriormente, se implementaron pruebas unitarias para validar las operaciones CRUD:
+
+- Creación de veterinarios.
+- Actualización de veterinarios.
+- Búsqueda por ID.
+- Búsqueda por nombre.
+- Eliminación de veterinarios.
+
+Finalmente, se ejecutaron correctamente las pruebas utilizando Maven y la base de datos H2.
+
+---
+
+## Comandos para ejecutar el Caso 1
+
+### Ejecutar todas las pruebas
+
+```bash
 mvn test -Dspring.profiles.active=h2
+```
+
+### Ejecutar únicamente VetServiceTest
+
+```bash
+mvn -Dtest=VetServiceTest test -Dspring.profiles.active=h2
+```
+
+---
+
+# Caso 2 - Pruebas unitarias para dueños (OwnerServiceTest)
+
+## Descripción
+
+En este caso se implementaron las pruebas unitarias correspondientes a la entidad `Owner` dentro de la clase `OwnerServiceTest`.
+
+Para ello, se desarrollaron las siguientes clases:
+
+- Owner
+- OwnerRepository
+- OwnerService
+- OwnerServiceImpl
+- OwnerNotFoundException
+
+Posteriormente, se implementaron pruebas unitarias para validar las operaciones CRUD:
+
+- Creación de dueños.
+- Actualización de dueños.
+- Búsqueda por ID.
+- Búsqueda por nombre.
+- Eliminación de dueños.
+
+Finalmente, se ejecutaron correctamente las pruebas utilizando Maven y la base de datos H2.
+
+---
+
+## Comandos para ejecutar el Caso 2
+
+### Ejecutar todas las pruebas
+
+```bash
+mvn test -Dspring.profiles.active=h2
+```
+
+### Ejecutar únicamente OwnerServiceTest
+
+```bash
+mvn -Dtest=OwnerServiceTest test -Dspring.profiles.active=h2
+```
+
+---
+
+# Caso 3 - Pruebas unitarias para especialidades (SpecialtyServiceTest)
+
+## Descripción del Caso 3 realizado por Angie Portocarrero
+
+(Pendiente de completar)
+
+---
+
+## Comandos para ejecutar el Caso 3
+
+(Pendiente de completar)
+
+---
+
+# Caso 4 - Pruebas unitarias para visitas (VisitServiceTest)
+
+## Descripción del Caso 4 realizado por Sheila Diaz
+
+(Pendiente de completar)
+
+---
+
+## Comandos para ejecutar el Caso 4
+
+(Pendiente de completar)
+
+---
+
+# Dificultades encontradas y solución aplicada
+
+Durante el desarrollo del laboratorio se presentaron algunas dificultades relacionadas con la configuración inicial del repositorio y el manejo de Git en MacOS.
+
+Inicialmente fue necesario eliminar el historial Git del repositorio original para crear un nuevo repositorio colaborativo. Posteriormente, surgieron problemas relacionados con la autenticación de GitHub debido a que GitHub ya no permite autenticación mediante contraseña tradicional, por lo que se solucionó utilizando un Personal Access Token (PAT).
+
+También se presentaron inconvenientes al editar commits mediante VIM desde la terminal de MacOS. Este problema fue solucionado aprendiendo el uso básico del editor para guardar y cerrar correctamente los commits.
+
+Finalmente, se verificó la correcta ejecución de todas las pruebas unitarias utilizando Maven y el perfil H2, obteniendo resultados satisfactorios con BUILD SUCCESS.
+
+---
+
+# Repositorio GitHub
+
+Agregar aquí la URL final del repositorio colaborativo:
+
+```text
+https://github.com/USUARIO/laboratorio11-petclinic-test
+```
