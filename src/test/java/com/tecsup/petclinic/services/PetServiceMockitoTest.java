@@ -9,20 +9,20 @@ import java.util.List;
 import java.util.Optional;
 
 import com.tecsup.petclinic.dtos.PetDTO;
-import com.tecsup.petclinic.mappers.PetMapper;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-
 import com.tecsup.petclinic.entities.Pet;
 import com.tecsup.petclinic.exceptions.PetNotFoundException;
+import com.tecsup.petclinic.mappers.PetMapper;
 import com.tecsup.petclinic.repositories.PetRepository;
 import com.tecsup.petclinic.util.TObjectCreator;
 
 import lombok.extern.slf4j.Slf4j;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.bean.override.mockito.MockitoBean; // New import
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 @Slf4j
 @SpringBootTest
@@ -37,24 +37,17 @@ public class PetServiceMockitoTest {
     @MockitoBean
     private PetRepository repository;
 
-
     @BeforeEach
     void setUp() {
     }
 
-    /**
-     *
-     */
     @Test
     public void testFindPetById() {
 
-        //Pet petExpected = TObjectCreator.getPet();
-        Pet petExpected = new Pet(1,"Leo",1,1, null);
+        Pet petExpected = new Pet(1, "Leo", 1, 1, null);
 
         Mockito.when(this.repository.findById(1))
-                .thenReturn((Optional.of(petExpected)));
-
-
+                .thenReturn(Optional.of(petExpected));
 
         PetDTO pet = null;
 
@@ -64,15 +57,12 @@ public class PetServiceMockitoTest {
             fail(e.getMessage());
         }
 
-        log.info("" + petExpected);
-        log.info("" + pet);
-        assertEquals(petExpected.getName(), pet.getName());
+        log.info("Pet expected: {}", petExpected);
+        log.info("Pet found: {}", pet);
 
+        assertEquals(petExpected.getName(), pet.getName());
     }
 
-    /**
-     *
-     */
     @Test
     public void testFindPetByName() {
 
@@ -88,9 +78,6 @@ public class PetServiceMockitoTest {
         assertEquals(petsExpected.size(), pets.size());
     }
 
-    /**
-     *
-     */
     @Test
     public void testFindPetByTypeId() {
 
@@ -106,9 +93,6 @@ public class PetServiceMockitoTest {
         assertEquals(petsExpected.size(), pets.size());
     }
 
-    /**
-     *
-     */
     @Test
     public void testFindPetByOwnerId() {
 
@@ -122,19 +106,10 @@ public class PetServiceMockitoTest {
         List<Pet> pets = this.petService.findByOwnerId(OWNER_ID);
 
         assertEquals(petsExpected.size(), pets.size());
-
     }
 
-    /**
-     * To get ID generate , you need
-     * setup in id primary key in your
-     * entity this annotation :
-     *
-     * @GeneratedValue(strategy = GenerationType.IDENTITY)
-     */
     @Test
     public void testCreatePet() {
-
 
         Pet newPet = TObjectCreator.newPet();
         Pet newPetCreated = TObjectCreator.newPetCreated();
@@ -147,19 +122,14 @@ public class PetServiceMockitoTest {
 
         PetDTO newPetDTOCreated = this.petService.create(newPetDTO);
 
-        log.info("Pet created : {}" , newPetDTOCreated);
+        log.info("Pet created: {}", newPetDTOCreated);
 
         assertNotNull(newPetDTOCreated.getId());
         assertEquals(hopePetDTOCreated.getName(), newPetDTOCreated.getName());
         assertEquals(hopePetDTOCreated.getOwnerId(), newPetDTOCreated.getOwnerId());
         assertEquals(hopePetDTOCreated.getTypeId(), newPetDTOCreated.getTypeId());
-
     }
 
-
-    /**
-     *
-     */
     @Test
     public void testUpdatePet() {
 
@@ -171,44 +141,32 @@ public class PetServiceMockitoTest {
         Pet newPetCreate = TObjectCreator.newPetCreatedForUpdate();
 
         PetDTO newPetDTO = petMapper.mapToDto(newPet);
-        PetDTO hopePetDTOCreate = petMapper.mapToDto(newPetCreate);
-
-
-        // ------------ Create ---------------
 
         Mockito.when(this.repository.save(newPet))
                 .thenReturn(newPetCreate);
 
         PetDTO newPetDTOCreate = this.petService.create(newPetDTO);
-        log.info("{}" , newPetDTOCreate);
 
-        // ------------ Update ---------------
+        log.info("Pet created for update: {}", newPetDTOCreate);
 
-        // Prepare data for update
         newPetDTOCreate.setName(UP_PET_NAME);
         newPetDTOCreate.setOwnerId(UP_OWNER_ID);
         newPetDTOCreate.setTypeId(UP_TYPE_ID);
 
-        PetDTO newPetDTOUpdate = newPetDTOCreate;
-        Pet newPetUpdate = this.petMapper.mapToEntity(newPetDTOUpdate);
+        Pet newPetUpdate = this.petMapper.mapToEntity(newPetDTOCreate);
 
-        // Create
         Mockito.when(this.repository.save(newPetUpdate))
                 .thenReturn(newPetUpdate);
 
-        // Execute update
         PetDTO petDTOUpdate = this.petService.update(newPetDTOCreate);
-        log.info("{}" + petDTOUpdate);
 
-        //            EXPECTED           ACTUAL
+        log.info("Pet updated: {}", petDTOUpdate);
+
         assertEquals(UP_PET_NAME, petDTOUpdate.getName());
-        assertEquals(UP_OWNER_ID, petDTOUpdate.getTypeId());
-        assertEquals(UP_TYPE_ID, petDTOUpdate.getOwnerId());
+        assertEquals(UP_OWNER_ID, petDTOUpdate.getOwnerId());
+        assertEquals(UP_TYPE_ID, petDTOUpdate.getTypeId());
     }
 
-    /**
-     *
-     */
     @Test
     public void testDeletePet() {
 
@@ -217,19 +175,17 @@ public class PetServiceMockitoTest {
 
         PetDTO newPetDTO = this.petMapper.mapToDto(newPet);
 
-        // ------------ Create ---------------
-
         Mockito.when(this.repository.save(newPet))
                 .thenReturn(newPetCreate);
 
         PetDTO petDTOCreate = this.petService.create(newPetDTO);
-        log.info("{}" ,petDTOCreate);
 
-        // ------------ Delete ---------------
+        log.info("Pet created for delete: {}", petDTOCreate);
 
-        Mockito.doNothing().when(this.repository).delete(newPetCreate);
         Mockito.when(this.repository.findById(newPetCreate.getId()))
                 .thenReturn(Optional.of(newPetCreate));
+
+        Mockito.doNothing().when(this.repository).delete(newPetCreate);
 
         try {
             this.petService.delete(petDTOCreate.getId());
@@ -237,10 +193,8 @@ public class PetServiceMockitoTest {
             fail(e.getMessage());
         }
 
-        // ------------ Validate ---------------
-
         Mockito.when(this.repository.findById(newPetCreate.getId()))
-                .thenReturn(Optional.ofNullable(null));
+                .thenReturn(Optional.empty());
 
         try {
             this.petService.findById(petDTOCreate.getId());
@@ -248,7 +202,5 @@ public class PetServiceMockitoTest {
         } catch (PetNotFoundException e) {
             assertTrue(true);
         }
-
     }
-
 }

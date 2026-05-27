@@ -25,9 +25,7 @@ INSERT INTO specialties (id, name, office, h_open, h_close) VALUES
 (2, 'surgery', 'Maryland', 8, 12),
 (3, 'dentistry', 'Terranova', 9, 19);
 
--- ===============================================
--- 3. INSERT VET_SPECIALTIES (Relación Vet-Specialty)
--- ===============================================
+-- 3. INSERT VET_SPECIALTIES
 INSERT INTO vet_specialties (vet_id, specialty_id, certification_date, years_experience, is_primary, notes) VALUES
 (2, 1, '2015-06-15', 8, true, 'Expert in X-ray imaging'),
 (3, 2, '2012-03-20', 11, true, 'Specialized in orthopedic surgery'),
@@ -35,9 +33,7 @@ INSERT INTO vet_specialties (vet_id, specialty_id, certification_date, years_exp
 (4, 2, '2014-09-05', 9, true, 'Soft tissue surgery specialist'),
 (5, 1, '2016-02-28', 7, false, 'CT and MRI certified');
 
--- ===============================================
--- 4. INSERT TYPES (Tipos de Mascotas)
--- ===============================================
+-- 4. INSERT TYPES
 INSERT INTO types (id, name, description, active, size_category, average_lifespan, care_level) VALUES
 (1, 'cat', 'Domestic feline', true, 'small', 15, 'medium'),
 (2, 'dog', 'Domestic canine', true, 'medium', 12, 'medium'),
